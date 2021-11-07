@@ -53,13 +53,53 @@ let findById = (id) => {
     }
 }
 
-//console.log(findByName())
-addEmloyee('Andrew', 'Jackson')
-removeEmployee(5)
-console.log(findById(2))
-console.log(findById(4))
-console.log(findById(2))
+let addPhone = (id, phone) => {
+    let employee = findById(id)
+    !employee.phones ? employee.phones = [] : ''
+    employee.phones.indexOf(phone) < 0 ? employee.phones.push(phone) : ''
+}
 
+let setDateOfBirth = (id, date) => {
+    let employee = findById(id)
+    employee.dateOfBirth = date
+}
+
+let getAge = (id) => {
+    let today = new Date();
+    let bd = new Date(findById(id).dateOfBirth)
+    return Math.round((today - bd) / (24 * 3600 * 365 * 1000))
+}
+
+let formatDate = (date) => {
+    let d = new Date(date)
+    let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate();
+    let month = d.getMonth() < 9 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1;
+    return day + '.' + month + '.' + d.getFullYear()
+}
+
+let getEmployeeInfo = (id) => {
+    let employee = findById(id)
+    result = employee.name + ' ' + employee.surname + ' was born ' + formatDate(employee.dateOfBirth) + ' (' + getAge(7) + ' years). ' + 'His phones: ' + employee.phones.toString();
+
+    return result
+}
+
+let testEmployee = () => {
+    addEmloyee('Andrew', 'Jackson')
+    removeEmployee(5)
+    addPhone(7, '911')
+    addPhone(7, '922')
+    addPhone(7, '922')
+    setDateOfBirth(7, '2009-09-09')
+    showEmployee(findById(7))
+    console.log(getEmployeeInfo(7));
+}
+
+let getEmployeeJSON = (id) => {
+    return JSON.stringify(findById(id))
+}
+testEmployee()
+console.log(getEmployeeJSON(7));
 
 //showEmployee(DATA.employees[1])
 // findByName(null, null);
