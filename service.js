@@ -36,9 +36,10 @@ let showEmployee = (employee) => {
     }
 }
 
-let showEmployees = () => {
+showEmployees = () => {
     for (let employee of DATA.employees) {
         showEmployee(employee)
+        console.log(employee);
     }
 }
 
@@ -93,16 +94,11 @@ let testEmployee = () => {
     setDateOfBirth(7, '2009-09-09')
     showEmployee(findById(7))
     console.log(getEmployeeInfo(7));
+    console.log(getEmployeeJSON(7))
 }
 
 let getEmployeeJSON = (id) => {
     return JSON.stringify(findById(id))
 }
-testEmployee()
-console.log(getEmployeeJSON(7));
 
-//showEmployee(DATA.employees[1])
-// findByName(null, null);
-// findByName('James');
-// findByName(null, 'Adams');
-// findByName('James', 'Madison');
+testEmployee()
