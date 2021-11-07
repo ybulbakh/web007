@@ -1,8 +1,12 @@
+const PLACEHOLDER = 'employeesPlaceholder'
+
 let $ = (id) => {
     return document.getElementById(id)
 }
 
-const PLACEHOLDER = 'employeesPlaceholder'
+runUi=(employees)=>{
+    showEmployees(employees)
+}
 
 clearEmployeesPlaceholder = () => {
     document.getElementById(PLACEHOLDER).innerHTML = '';
@@ -16,6 +20,9 @@ showEmployees = (employees) => {
     }
     $(PLACEHOLDER).innerHTML += '</ul>'
 }
-runUi=(employees)=>{
-    showEmployees(employees)
+function addEmployeeUI() {
+    const name = document.getElementById("name").value;
+    const surname = document.getElementById("surname").value;
+    const id = addEmployee(name, surname);
+    showEmployees(DATA.employees);
 }
